@@ -5,12 +5,19 @@ export async function GET() {
   try {
     const questsData = await getSheetData('任務!A2:D');
     const announcementsData = await getSheetData('公告!A2:D');
-
+        // 清理字串的輔助函數
+            const cleanString = (str) => {
+            if (typeof str === 'string') {
+                // 替換換行和回車符為空字串，防止 JSON 解析錯誤
+                return str.replace(/[\n\r]/g, '');
+            }
+            return str;
+            };
     const quests = questsData ? questsData.map((row, index) => ({
       id: row[0] || `quest-${index + 1}`,
       title: row[1] || '未命名任務',
       date: row[2] || new Date().toISOString().split('T')[0],
-      content: row[3] || '',
+      content: cleanString(row[3]) || '', // 在這裡使用 cleanString 函數
       type: 'quest'
     })) : [];
 
@@ -18,7 +25,7 @@ export async function GET() {
       id: row[0] || `announcement-${index + 1}`,
       title: row[1] || '未命名公告',
       date: row[2] || new Date().toISOString().split('T')[0],
-      content: row[3] || '',
+      content: cleanString(row[3]) || '', // 在這裡使用 cleanString 函數
       type: 'announcement'
     })) : [];
 
