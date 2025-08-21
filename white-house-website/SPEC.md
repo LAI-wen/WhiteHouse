@@ -1,7 +1,7 @@
-# White House Website 專案規格書
+# 《白房子》DC 企劃網站規格書
 
 ## 專案概述
-White House 白宮網站 - 基於 Next.js 開發的動態網站，整合 Google Sheets 作為資料來源。
+《白房子》Discord 企劃官網 - 基於 Next.js 開發的沉浸式 TRPG 企劃資訊平台，整合 Google Sheets 作為資料來源，打造高效能、視覺沉浸、易於 GM 管理的邪教主題遊戲網站。
 
 ## 功能需求
 
