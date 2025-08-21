@@ -49,14 +49,14 @@ export default function BulletinPage() {
   };
 
   const getQuestIcon = (index) => {
-    const icons = [
-      <FireOutlined style={{ color: '#ff4d4f' }} />,
-      <ExclamationCircleOutlined style={{ color: '#faad14' }} />,
-      <CheckCircleOutlined style={{ color: '#52c41a' }} />,
-      <ClockCircleOutlined style={{ color: '#1890ff' }} />
-    ];
-    return icons[index % icons.length];
-  };
+  const icons = [
+    <FireOutlined key="fire" style={{ color: '#ff4d4f' }} />,
+    <ExclamationCircleOutlined key="exclamation" style={{ color: '#faad14' }} />,
+    <CheckCircleOutlined key="check" style={{ color: '#52c41a' }} />,
+    <ClockCircleOutlined key="clock" style={{ color: '#1890ff' }} />
+  ];
+  return icons[index % icons.length];
+ };
 
   return (
     <div style={{ 
