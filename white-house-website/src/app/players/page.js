@@ -580,7 +580,9 @@ export default function PlayersPage() {
                           borderRadius: '4px',
                           color: '#000'
                         }}>
-                          {privateInfo.stats || '數值未設定'}
+                          {typeof privateInfo.stats === 'object' 
+                            ? JSON.stringify(privateInfo.stats, null, 2) 
+                            : (privateInfo.stats || '數值未設定')}
                         </Text>
                       </Descriptions.Item>
                     </Descriptions>
