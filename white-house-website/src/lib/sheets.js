@@ -3,7 +3,8 @@ import { google } from 'googleapis';
 const auth = new google.auth.GoogleAuth({
   credentials: process.env.GOOGLE_CREDENTIALS ? 
     JSON.parse(process.env.GOOGLE_CREDENTIALS) : 
-    require('../credentials.json'),
+    undefined,
+  keyFile: process.env.GOOGLE_CREDENTIALS ? undefined : './credentials.json',
   scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
 });
 
