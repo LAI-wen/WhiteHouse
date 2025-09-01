@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const qaData = await getSheetData('QA!A2:B');
+    const qaData = await getSheetData('FAQ!A2:D');
     
     if (qaData) {
       const qaList = qaData.map((row, index) => ({

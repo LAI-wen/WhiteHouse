@@ -129,9 +129,53 @@ white-house-website/
 - **生產環境**: Vercel 部署 ✅
 - **資料同步**: Google Sheets 即時 ✅
 
-## 下一步優化建議
-1. 新增更多 Google Sheets 工作表支援
-2. 實作即時通知功能
-3. 加入更多互動元素
-4. 優化手機端體驗
-5. 新增管理員後台功能
+## 下一步開發階段
+
+### 🎯 第二期開發目標 (擴展計畫)
+
+#### 階段 5: 登入與身份系統 (第1週)
+- [ ] 實作玩家登入系統 (基於現有密碼驗證)
+- [ ] 新增 session 管理
+- [ ] 建立雙重身份邏輯 (Public_Faction + True_Faction)
+- [ ] 新增登入保護的頁面路由
+
+#### 階段 6: 玩家儀表板 (第2週) 
+- [ ] 建立玩家儀表板首頁 (/dashboard)
+- [ ] 實作角色資料頁面 (/dashboard/profile)
+- [ ] 實作物品系統 (/dashboard/inventory)
+- [ ] 實作任務系統整合 (/dashboard/quests)
+
+#### 階段 7: CYOA互動事件系統 (第2-3週)
+- [ ] 設計事件資料結構
+- [ ] 建立事件頁面 (/dashboard/events)
+- [ ] 實作選擇判定邏輯
+- [ ] 實作結果處理與數值更新
+
+#### 階段 8: Discord機器人整合 (第3-4週) 
+- [ ] 開發基本Discord Bot
+- [ ] 實作核心指令 (/status, /roll, /event)
+- [ ] 建立Bot與網站API對接
+- [ ] 實作即時事件通知廣播
+
+### 📊 擴展後的Google Sheets結構
+詳見下方「擴展資料結構」章節
+
+## 擴展資料結構 (Google Sheets)
+
+### 現有工作表 ✅
+1. **名單工作表 (Players)** - 基礎玩家資料
+2. **任務工作表 (Quests)** - 任務資料  
+3. **公告工作表 (Announcements)** - 公告資料
+4. **QA工作表 (FAQ)** - 常見問題
+
+### 新增工作表 📝 
+5. **Characters** - 詳細角色資料 (HP, SAN, 雙重身份等)
+6. **Items** - 物品主資料庫
+7. **Inventory** - 角色持有物品關聯表
+8. **Events** - CYOA互動事件資料
+9. **EventOptions** - 事件選項與條件
+10. **EventOutcomes** - 事件結果與影響
+11. **Notifications** - 系統通知資料
+
+### 工作表詳細結構
+詳見 `DATABASE_STRUCTURE.md` (待建立)

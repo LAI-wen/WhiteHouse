@@ -1,0 +1,413 @@
+.campaignsPage {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  font-size: 18px;
+  color: #666;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin: 0 0 4px 0;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+
+.createBtn {
+  background: linear-gradient(135deg, #4caf50, #45a049);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.createBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.campaignsList {
+  display: grid;
+  gap: 24px;
+}
+
+.campaignCard {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.campaignCard:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+.campaignHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.campaignName {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.status {
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.status.available {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.status.unavailable {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.campaignActions {
+  display: flex;
+  gap: 8px;
+}
+
+.editBtn, .designBtn, .toggleBtn, .deleteBtn {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.editBtn {
+  background: #2196f3;
+  color: white;
+}
+
+.editBtn:hover {
+  background: #1976d2;
+}
+
+.designBtn {
+  background: #ff9800;
+  color: white;
+}
+
+.designBtn:hover {
+  background: #f57c00;
+}
+
+.toggleBtn {
+  background: #9c27b0;
+  color: white;
+}
+
+.toggleBtn:hover {
+  background: #7b1fa2;
+}
+
+.deleteBtn {
+  background: #f44336;
+  color: white;
+}
+
+.deleteBtn:hover {
+  background: #d32f2f;
+}
+
+.campaignContent {
+  margin-top: 16px;
+}
+
+.description {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+}
+
+.restrictions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.restriction {
+  font-size: 12px;
+  color: #666;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+
+.restriction strong {
+  color: #333;
+}
+
+.stats {
+  display: flex;
+  gap: 16px;
+}
+
+.stat {
+  font-size: 12px;
+  color: #666;
+  padding: 6px 12px;
+  background: #f0f0f0;
+  border-radius: 20px;
+}
+
+.empty {
+  text-align: center;
+  padding: 80px 40px;
+  color: #999;
+}
+
+.empty p {
+  font-size: 18px;
+  margin: 0 0 24px 0;
+}
+
+/* 彈窗樣式 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #f8f9fa;
+  border-radius: 12px 12px 0 0;
+}
+
+.modalHeader h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeBtn:hover {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.form {
+  padding: 24px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus, .textarea:focus {
+  outline: none;
+  border-color: #2196f3;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.hint {
+  display: block;
+  font-size: 12px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+.checkboxLabel input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.cancelBtn {
+  background: #f5f5f5;
+  color: #666;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cancelBtn:hover {
+  background: #e0e0e0;
+}
+
+.saveBtn {
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.saveBtn:hover {
+  background: #45a049;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .campaignsPage {
+    padding: 16px;
+  }
+  
+  .header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  .campaignHeader {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .campaignActions {
+    flex-wrap: wrap;
+  }
+  
+  .restrictions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .stats {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .modalContent {
+    width: 95%;
+    margin: 20px;
+  }
+  
+  .form {
+    padding: 16px;
+  }
+  
+  .formActions {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

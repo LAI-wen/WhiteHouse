@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const data = await getSheetData('名單!A2:H'); // 試算表名稱改為"名單"
+    const data = await getSheetData('Players!A2:H');
     
     if (data) {
       const players = data.map((row, index) => ({

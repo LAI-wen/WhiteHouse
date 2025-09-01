@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useMemo } from 'react';
 import { Menu, Layout } from 'antd';
 import { 
   HomeOutlined, 
@@ -17,7 +18,7 @@ const { Header } = Layout;
 export default function Navigation() {
   const pathname = usePathname();
 
-  const menuItems = [
+  const menuItems = useMemo(() => [
     {
       key: '/',
       icon: <HomeOutlined />,
@@ -48,7 +49,11 @@ export default function Navigation() {
       icon: <QuestionCircleOutlined />,
       label: <Link href="/qa">常見問題</Link>,
     },
-  ];
+  ], []);
+
+  const selectedKeys = useMemo(() => {
+    return [pathname];
+  }, [pathname]);
 
   return (
     <Header style={{ 
@@ -79,7 +84,7 @@ export default function Navigation() {
         <Menu
           theme="dark"
           mode="horizontal"
-          selectedKeys={[pathname]}
+          selectedKeys={selectedKeys}
           items={menuItems}
           style={{ 
             background: 'transparent',

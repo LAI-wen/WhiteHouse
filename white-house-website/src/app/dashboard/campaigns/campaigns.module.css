@@ -1,0 +1,442 @@
+.campaignsPage {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.stats {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.stats span {
+  padding: 8px 16px;
+  background: #f8f9fa;
+  border-radius: 20px;
+  border: 1px solid #e9ecef;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.tab {
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #666;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tab:hover {
+  color: #1976d2;
+  background-color: #f5f5f5;
+}
+
+.tab.active {
+  color: #1976d2;
+  border-bottom-color: #1976d2;
+  background-color: #f8f9ff;
+}
+
+.campaignsList {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+
+.campaignCard {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.campaignCard:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+.campaignInfo {
+  margin-bottom: 20px;
+}
+
+.campaignName {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin: 0 0 12px 0;
+}
+
+.campaignDescription {
+  color: #666;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+}
+
+.progressInfo {
+  margin-top: 12px;
+}
+
+.progressText {
+  font-size: 14px;
+  color: #1976d2;
+  font-weight: 500;
+}
+
+.campaignActions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.actionBtn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.actionBtn.available {
+  background: #4caf50;
+  color: white;
+}
+
+.actionBtn.available:hover {
+  background: #45a049;
+}
+
+.actionBtn.in_progress {
+  background: #ff9800;
+  color: white;
+}
+
+.actionBtn.in_progress:hover {
+  background: #f57c00;
+}
+
+.actionBtn.completed {
+  background: #2196f3;
+  color: white;
+}
+
+.actionBtn.completed:hover {
+  background: #1976d2;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+  font-size: 18px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  font-size: 18px;
+  color: #666;
+}
+
+/* 彈窗樣式 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90%;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #f8f9fa;
+  border-radius: 12px 12px 0 0;
+}
+
+.modalTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeBtn:hover {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.modalBody {
+  padding: 24px;
+  min-height: 300px;
+}
+
+/* 當前步驟樣式 */
+.currentStep {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.stepTitle {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+.stepDescription {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  margin: 0 0 32px 0;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #1976d2;
+}
+
+.options {
+  margin-top: 24px;
+}
+
+.options h4 {
+  font-size: 18px;
+  color: #333;
+  margin: 0 0 20px 0;
+}
+
+.optionLabel {
+  display: block;
+  margin: 12px 0;
+  padding: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.optionLabel:hover {
+  border-color: #1976d2;
+  background: #f8f9ff;
+}
+
+.optionLabel:has(.optionRadio:checked) {
+  border-color: #1976d2;
+  background: #e3f2fd;
+}
+
+.optionRadio {
+  margin-right: 12px;
+}
+
+.optionText {
+  font-size: 16px;
+  color: #333;
+}
+
+.requirementText {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #1976d2;
+  font-weight: 500;
+}
+
+.submitBtn {
+  margin-top: 24px;
+  padding: 12px 32px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 100%;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #45a049;
+}
+
+.submitBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* 結果顯示樣式 */
+.stepResult {
+  animation: fadeIn 0.5s ease-in;
+  text-align: center;
+}
+
+.stepResult h3 {
+  font-size: 20px;
+  color: #333;
+  margin: 0 0 20px 0;
+}
+
+.chosenOption {
+  font-size: 16px;
+  color: #1976d2;
+  font-weight: bold;
+  margin: 0 0 24px 0;
+  padding: 16px;
+  background: #e3f2fd;
+  border-radius: 8px;
+}
+
+.outcomes {
+  margin: 24px 0;
+}
+
+.outcomeText {
+  font-size: 16px;
+  color: #555;
+  margin: 8px 0;
+  padding: 12px;
+  background: #f5f5f5;
+  border-radius: 6px;
+}
+
+.changes {
+  margin: 24px 0;
+  padding: 16px;
+  background: #fff3e0;
+  border-radius: 8px;
+  border: 1px solid #ffb74d;
+}
+
+.changes h4 {
+  font-size: 16px;
+  color: #e65100;
+  margin: 0 0 8px 0;
+}
+
+.changesList {
+  font-size: 14px;
+  color: #bf360c;
+  font-weight: 500;
+  margin: 0;
+}
+
+.completedMessage {
+  margin: 32px 0;
+  padding: 24px;
+  background: #e8f5e8;
+  border-radius: 8px;
+  border: 2px solid #4caf50;
+}
+
+.completedMessage h3 {
+  color: #2e7d32;
+  margin: 0 0 12px 0;
+}
+
+.completedMessage p {
+  color: #388e3c;
+  margin: 0;
+  font-size: 16px;
+}
+
+.nextStepHint {
+  margin: 32px 0;
+  padding: 16px;
+  background: #f3e5f5;
+  border-radius: 8px;
+  border: 1px solid #ba68c8;
+  text-align: center;
+}
+
+.nextStepHint p {
+  color: #7b1fa2;
+  margin: 0;
+  font-style: italic;
+}
+
+.noOptions {
+  text-align: center;
+  padding: 32px;
+}
+
+.noOptions p {
+  font-size: 16px;
+  color: #666;
+  margin: 0 0 24px 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

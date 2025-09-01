@@ -3,8 +3,8 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const questsData = await getSheetData('任務!A2:D');
-    const announcementsData = await getSheetData('公告!A2:D');
+    const questsData = await getSheetData('Quests!A2:G');
+    const announcementsData = await getSheetData('Announcements!A2:F');
         // 清理字串的輔助函數
             const cleanString = (str) => {
             if (typeof str === 'string') {

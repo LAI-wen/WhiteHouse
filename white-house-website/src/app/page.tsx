@@ -208,19 +208,21 @@ export default function Home() {
             </Col>
 
             <Col xs={24} sm={12} md={8}>
-              <Card style={{ 
-                background: 'linear-gradient(135deg, #595959 0%, #8c8c8c 100%)',
-                border: 'none',
-                height: '180px'
-              }}>
-                <div style={{ textAlign: 'center', color: 'white' }}>
-                  <HomeOutlined style={{ fontSize: '3rem', marginBottom: '1rem' }} />
-                  <Title level={3} style={{ color: 'white', margin: '0 0 0.5rem 0' }}>敬請期待</Title>
-                  <Paragraph style={{ color: 'rgba(255,255,255,0.9)', margin: 0 }}>
-                    更多功能開發中...
-                  </Paragraph>
-                </div>
-              </Card>
+              <Link href="/login" style={{ textDecoration: 'none' }}>
+                <Card hoverable style={{ 
+                  background: 'linear-gradient(135deg, #000000 0%, #434343 100%)',
+                  border: '2px solid #fff',
+                  height: '180px'
+                }}>
+                  <div style={{ textAlign: 'center', color: 'white' }}>
+                    <EyeOutlined style={{ fontSize: '3rem', marginBottom: '1rem' }} />
+                    <Title level={3} style={{ color: 'white', margin: '0 0 0.5rem 0' }}>玩家登入</Title>
+                    <Paragraph style={{ color: 'rgba(255,255,255,0.9)', margin: 0 }}>
+                      進入個人儀表板系統
+                    </Paragraph>
+                  </div>
+                </Card>
+              </Link>
             </Col>
           </Row>
 

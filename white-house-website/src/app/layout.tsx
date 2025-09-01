@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-TW">
+    <html lang="zh-TW" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`} style={{ margin: 0, background: '#f5f5f5' }}>
         <Navigation />
         <main style={{ minHeight: 'calc(100vh - 64px)' }}>

@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm:*)",
+      "Bash(curl:*)",
+      "Bash(npm run build:*)",
+      "Bash(export SPREADSHEET_ID=1ryL19XjEUPsVwBOrsZjE7_ogM_XiqwlASCqu-dqmp_0)",
+      "Bash(echo:*)",
+      "Bash(SPREADSHEET_ID=1ryL19XjEUPsVwBOrsZjE7_ogM_XiqwlASCqu-dqmp_0 node test-concurrent-simple.js)",
+      "Bash(SPREADSHEET_ID=1ryL19XjEUPsVwBOrsZjE7_ogM_XiqwlASCqu-dqmp_0 npm run setup-sheets)",
+      "Bash(SPREADSHEET_ID=1ryL19XjEUPsVwBOrsZjE7_ogM_XiqwlASCqu-dqmp_0 node scripts/add-test-data.js)",
+      "Bash(SPREADSHEET_ID=1ryL19XjEUPsVwBOrsZjE7_ogM_XiqwlASCqu-dqmp_0 node debug-sheets.js)",
+      "Bash(SPREADSHEET_ID=1ryL19XjEUPsVwBOrsZjE7_ogM_XiqwlASCqu-dqmp_0 node fix-headers.js)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

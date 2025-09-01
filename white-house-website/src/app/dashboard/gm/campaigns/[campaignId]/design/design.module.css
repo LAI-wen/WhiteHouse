@@ -1,0 +1,518 @@
+.designPage {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  font-size: 18px;
+  color: #666;
+}
+
+.header {
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+  color: white;
+  padding: 32px;
+  border-radius: 12px;
+  margin-bottom: 32px;
+}
+
+.backBtn {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background 0.3s ease;
+}
+
+.backBtn:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  font-size: 16px;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 32px;
+  background: white;
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.tab {
+  flex: 1;
+  padding: 16px 24px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.tab:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.tab.active {
+  background: linear-gradient(135deg, #2196f3, #1976d2);
+  color: white;
+}
+
+.content {
+  background: white;
+  border-radius: 12px;
+  min-height: 600px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.panelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 32px 24px 32px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.panelHeader h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.createBtn {
+  background: linear-gradient(135deg, #4caf50, #45a049);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.createBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.testBtn {
+  background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.testBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
+}
+
+.itemsList {
+  padding: 32px;
+}
+
+.itemCard {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+.itemCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.itemTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.itemDesc {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.badge.starting {
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  color: white;
+}
+
+.itemActions {
+  display: flex;
+  gap: 8px;
+}
+
+.editBtn, .deleteBtn {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.editBtn {
+  background: #2196f3;
+  color: white;
+}
+
+.editBtn:hover {
+  background: #1976d2;
+}
+
+.deleteBtn {
+  background: #f44336;
+  color: white;
+}
+
+.deleteBtn:hover {
+  background: #d32f2f;
+}
+
+.stepStats, .optionStats {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.stepStats span, .optionStats span {
+  font-size: 12px;
+  color: #666;
+  padding: 4px 12px;
+  background: white;
+  border-radius: 20px;
+}
+
+.optionFlow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.flowItem {
+  font-size: 12px;
+  color: #666;
+  padding: 4px 8px;
+  background: white;
+  border-radius: 6px;
+}
+
+.arrow {
+  color: #2196f3;
+  font-weight: bold;
+}
+
+.requirement {
+  font-size: 12px;
+  color: #ff9800;
+  background: #fff3e0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+.empty {
+  text-align: center;
+  padding: 80px 40px;
+  color: #999;
+}
+
+.empty p {
+  font-size: 18px;
+  margin: 0 0 24px 0;
+}
+
+.previewPanel {
+  padding: 32px;
+  text-align: center;
+}
+
+.flowChart {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-top: 24px;
+}
+
+/* 彈窗樣式 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #f8f9fa;
+  border-radius: 12px 12px 0 0;
+}
+
+.modalHeader h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeBtn:hover {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.form {
+  padding: 24px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.input, .textarea, .select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus, .textarea:focus, .select:focus {
+  outline: none;
+  border-color: #2196f3;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+.checkboxLabel input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.cancelBtn {
+  background: #f5f5f5;
+  color: #666;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cancelBtn:hover {
+  background: #e0e0e0;
+}
+
+.saveBtn {
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.saveBtn:hover {
+  background: #45a049;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .designPage {
+    padding: 16px;
+  }
+  
+  .header {
+    padding: 24px 16px;
+  }
+  
+  .title {
+    font-size: 20px;
+  }
+  
+  .tabs {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .tab {
+    text-align: center;
+  }
+  
+  .panelHeader {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  .itemHeader {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .itemActions {
+    flex-wrap: wrap;
+  }
+  
+  .optionFlow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .arrow {
+    display: none;
+  }
+  
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .modalContent {
+    width: 95%;
+    margin: 20px;
+  }
+  
+  .form {
+    padding: 16px;
+  }
+  
+  .formActions {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

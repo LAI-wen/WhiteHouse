@@ -1,0 +1,288 @@
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 18px;
+  color: #666;
+}
+
+.container {
+  min-height: 100vh;
+  background: #fafafa;
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.backBtn {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px 16px;
+  color: #666;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.backBtn:hover {
+  border-color: #333;
+  color: #333;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 32px;
+  max-width: 1200px;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.avatarSection {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #333;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0 auto 16px auto;
+}
+
+.characterName {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 12px 0;
+}
+
+.factionBadges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.publicFaction {
+  background: #f0f8ff;
+  color: #1890ff;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.trueFaction {
+  color: #999;
+  font-size: 14px;
+}
+
+.statsCard, .attributesCard, .specialCard, .storyCard, .notesCard {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 16px 0;
+}
+
+.statsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.statRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.statLabel {
+  font-weight: 500;
+  color: #333;
+  min-width: 35px;
+  font-size: 14px;
+}
+
+.statBar {
+  position: relative;
+  flex: 1;
+  height: 20px;
+  background: #f0f0f0;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+
+.statFill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.statText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+  text-shadow: 0 0 3px rgba(255,255,255,0.8);
+}
+
+.pointsRow {
+  display: flex;
+  gap: 16px;
+  padding-top: 8px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.point {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #f8f8f8;
+  border-radius: 4px;
+}
+
+.pointLabel {
+  font-size: 14px;
+  color: #666;
+}
+
+.pointValue {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.attributesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.attribute {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #f8f8f8;
+  border-radius: 4px;
+  border: 1px solid #f0f0f0;
+}
+
+.attrName {
+  font-weight: 500;
+  color: #333;
+}
+
+.attrValue {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.specialPoints {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.specialPoint {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #f8f8f8;
+  border-radius: 4px;
+  border: 1px solid #f0f0f0;
+}
+
+.specialLabel {
+  color: #666;
+  font-size: 14px;
+}
+
+.specialValue {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.storyText, .notesText {
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.notesText {
+  font-style: italic;
+  color: #777;
+}
+
+@media (max-width: 768px) {
+  .content {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .container {
+    padding: 16px;
+  }
+
+  .header {
+    margin-bottom: 24px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .attributesGrid {
+    grid-template-columns: 1fr;
+  }
+}

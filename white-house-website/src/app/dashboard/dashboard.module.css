@@ -1,0 +1,350 @@
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 18px;
+  color: #666;
+}
+
+.container {
+  min-height: 100vh;
+  background: #fafafa;
+}
+
+.topBar {
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.userName {
+  font-weight: 600;
+  font-size: 16px;
+  color: #333;
+}
+
+.faction {
+  color: #666;
+  font-size: 14px;
+}
+
+.stats {
+  display: flex;
+  gap: 24px;
+  flex: 1;
+  justify-content: center;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statLabel {
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+  min-width: 35px;
+}
+
+.statBar {
+  position: relative;
+  width: 120px;
+  height: 20px;
+  background: #f0f0f0;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+
+.statFill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.statText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+  text-shadow: 0 0 3px rgba(255,255,255,0.8);
+}
+
+.logoutBtn {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #666;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.logoutBtn:hover {
+  border-color: #333;
+  color: #333;
+}
+
+.main {
+  display: flex;
+  min-height: calc(100vh - 73px);
+}
+
+.sidebar {
+  width: 240px;
+  background: white;
+  border-right: 1px solid #e0e0e0;
+  padding: 24px 0;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.navLink {
+  padding: 12px 24px;
+  text-decoration: none;
+  color: #666;
+  font-size: 14px;
+  border-left: 3px solid transparent;
+  transition: all 0.2s;
+}
+
+.navLink:hover {
+  background: #f8f8f8;
+  color: #333;
+}
+
+.navLink.active {
+  background: #f8f8f8;
+  color: #333;
+  border-left-color: #333;
+  font-weight: 500;
+}
+
+.sectionTitle {
+  padding: 16px 24px 8px 24px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 8px;
+}
+
+.content {
+  flex: 1;
+  padding: 32px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 32px 0;
+  color: #333;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 1000px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.factionCard {
+  grid-column: span 2;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  color: #333;
+}
+
+.statusGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.statusItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #f8f8f8;
+  border-radius: 4px;
+  border: 1px solid #f0f0f0;
+}
+
+.statusLabel {
+  font-size: 14px;
+  color: #666;
+}
+
+.statusValue {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.placeholder {
+  color: #999;
+  font-style: italic;
+  margin: 0 0 16px 0;
+}
+
+.cardLink {
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cardLink:hover {
+  text-decoration: underline;
+}
+
+.factionContent {
+  margin-bottom: 16px;
+  font-size: 16px;
+  color: #333;
+}
+
+.secretArea {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 16px;
+  margin-top: 16px;
+}
+
+.secretBtn {
+  background: #333;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+
+.secretBtn:hover {
+  background: #555;
+}
+
+.questSummary {
+  margin-bottom: 16px;
+}
+
+.questStats {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.questStat {
+  color: #666;
+  font-size: 14px;
+}
+
+.questStat strong {
+  color: #333;
+}
+
+.currentQuest {
+  background: #f8f8f8;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #555;
+  border-left: 3px solid #1890ff;
+}
+
+.factionInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.factionInfo p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.factionInfo small {
+  color: #999;
+  font-size: 13px;
+}
+
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .nav {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .navLink {
+    white-space: nowrap;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+  }
+
+  .navLink.active {
+    border-left: none;
+    border-bottom-color: #333;
+  }
+
+  .topBar {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .stats {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .factionCard {
+    grid-column: span 1;
+  }
+}
