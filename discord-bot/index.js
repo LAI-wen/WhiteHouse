@@ -186,7 +186,9 @@ const commandHandlers = {
   // 查詢狀態
   async status(interaction) {
     const discordId = interaction.user.id;
-    await interaction.deferReply({ ephemeral: true });
+    
+    // 立即回應，避免超時
+    await interaction.reply({ content: '🔍 正在查詢角色狀態...', ephemeral: true });
 
     try {
       // 使用 POST 方法查詢，不提供 characterId 就是查詢現有綁定
@@ -249,7 +251,7 @@ const commandHandlers = {
         footer: { text: 'White House TRPG Bot - 完整數值顯示' }
       };
 
-      await interaction.editReply({ embeds: [statusEmbed] });
+      await interaction.editReply({ content: '', embeds: [statusEmbed] });
 
     } catch (error) {
       console.error('Status command error:', error);
