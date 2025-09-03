@@ -1,0 +1,5 @@
+
+.env
+discord-bot/.env
+node_modules/
+*.log
