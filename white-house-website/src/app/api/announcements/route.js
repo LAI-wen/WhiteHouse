@@ -28,7 +28,7 @@ const announcements = [
   }
 ];
 
-export async function GET(request) {
+export async function GET() {
   try {
     // 只返回活躍的公告，按日期排序（最新的在前）
     const activeAnnouncements = announcements

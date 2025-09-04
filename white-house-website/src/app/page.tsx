@@ -5,10 +5,19 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from './page.module.css';
 
+interface Announcement {
+  id: string;
+  title: string;
+  content: string;
+  author: string;
+  created_date: string;
+  is_active: string;
+}
+
 export default function Home() {
-  const [announcements, setAnnouncements] = useState([]);
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [selectedNews, setSelectedNews] = useState(null);
+  const [selectedNews, setSelectedNews] = useState<Announcement | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // 獲取最新消息
@@ -32,7 +41,7 @@ export default function Home() {
   }, []);
 
   // 處理閱讀全文點擊
-  const handleReadMore = (announcement: any) => {
+  const handleReadMore = (announcement: Announcement) => {
     setSelectedNews(announcement);
     setIsModalOpen(true);
   };
