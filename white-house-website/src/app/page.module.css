@@ -1,167 +1,622 @@
-.page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
-  font-family: var(--font-geist-sans);
+/* 容器 */
+.container {
+  min-height: 100vh;
+  background: #fff;
+  padding-top: 70px; /* 為固定導航預留空間 */
+  position: relative;
 }
 
-@media (prefers-color-scheme: dark) {
-  .page {
-    --gray-rgb: 255, 255, 255;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-  }
+/* Hero Section - 標題/口號區塊 */
+.hero {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 4rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid #dee2e6;
 }
 
-.main {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  grid-row-start: 2;
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.main ol {
-  font-family: var(--font-geist-mono);
-  padding-left: 0;
-  margin: 0;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  list-style-position: inside;
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 300;
+  color: #212529;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: 2px;
 }
 
-.main li:not(:last-of-type) {
-  margin-bottom: 8px;
+.heroSlogan {
+  font-size: 1.5rem;
+  color: #495057;
+  margin: 0 0 3rem 0;
+  font-style: italic;
+  line-height: 1.6;
 }
 
-.main code {
-  font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.ctas {
-  display: flex;
-  gap: 16px;
-}
-
-.ctas a {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
-  border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
-  cursor: pointer;
-  display: flex;
+.ctaButton {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 2px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  min-height: 44px; /* 觸控友善的最小點擊區域 */
+  min-width: 120px;
+  text-align: center;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
 }
 
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
+.ctaButton:hover {
+  background: #333;
+  transform: translateY(-2px);
 }
 
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 158px;
+/* 形象輪播區塊 */
+.carousel {
+  background: #000;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
-.footer {
-  grid-row-start: 3;
+.carouselContainer {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.carouselTrack {
   display: flex;
-  gap: 24px;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.footer a {
+.slide {
+  min-width: 100%;
+  position: relative;
+}
+
+.carouselImage {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  filter: brightness(0.8) contrast(1.1) saturate(1.2);
+}
+
+.slideOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  padding: 3rem 2rem 2rem;
+  color: #fff;
+}
+
+.slideOverlay h3 {
+  font-size: 1.8rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 300;
+}
+
+.slideOverlay p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 1.1rem;
+}
+
+/* 最新消息區塊 */
+.news {
+  padding: 4rem 2rem;
+  background: #f8f9fa;
+}
+
+.newsContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-align: center;
+  margin: 0 0 3rem 0;
+  color: #212529;
+  letter-spacing: 1px;
+}
+
+.newsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+}
+
+.newsCard {
+  background: #fff;
+  padding: 2rem;
+  border: 1px solid #dee2e6;
+  transition: all 0.3s ease;
+}
+
+.newsCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.newsHeader {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 8px;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f1f3f4;
 }
 
-.footer img {
-  flex-shrink: 0;
+.newsCategory {
+  background: #000;
+  color: #fff;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
+.newsDate {
+  color: #6c757d;
+  font-size: 0.9rem;
 }
 
-@media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
-  }
+.newsTitle {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0 0 1rem 0;
+  color: #212529;
+  line-height: 1.4;
+}
 
-  .main {
-    align-items: center;
-  }
+.newsExcerpt {
+  color: #495057;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+}
 
-  .main ol {
-    text-align: center;
-  }
+.readMore {
+  background: none;
+  border: none;
+  color: #000;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.5rem 1rem; /* 增加觸控區域 */
+  min-height: 44px;
+  border-radius: 4px;
+}
 
-  .ctas {
+.readMore:hover,
+.readMore:focus {
+  background: #f5f5f5;
+}
+
+.readMore:hover {
+  transform: translateX(4px);
+}
+
+/* 導覽區塊 */
+.navigation {
+  padding: 4rem 2rem;
+  background: #fff;
+  border-top: 1px solid #dee2e6;
+}
+
+.navContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.navCard {
+  background: #f8f9fa;
+  padding: 2rem;
+  text-decoration: none;
+  color: #212529;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  min-height: 120px; /* 確保足夠的觸控區域 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.navCard:hover {
+  border-color: #000;
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+.navCard h3 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin: 0 0 0.75rem 0;
+  color: #212529;
+}
+
+.navCard p {
+  margin: 0;
+  color: #6c757d;
+  line-height: 1.5;
+}
+
+/* 頁尾 */
+.footer {
+  background: #212529;
+  color: #adb5bd;
+  padding: 3rem 2rem 2rem;
+}
+
+.footerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.disclaimer {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #343a40;
+  border-radius: 4px;
+}
+
+.disclaimer p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footerLinks a {
+  color: #adb5bd;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footerLinks a:hover {
+  color: #fff;
+}
+
+.copyright {
+  border-top: 1px solid #343a40;
+  padding-top: 1.5rem;
+}
+
+.copyright p {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .heroSlogan {
+    font-size: 1.2rem;
+  }
+  
+  .ctaButton {
+    padding: 1.2rem 2.5rem; /* 手機版按鈕更大 */
+    min-height: 50px;
+    font-size: 1rem;
+  }
+  
+  .carouselImage {
+    height: 300px;
+  }
+  
+  .slideOverlay {
+    padding: 2rem 1rem 1rem;
+  }
+  
+  .slideOverlay h3 {
+    font-size: 1.4rem;
+  }
+  
+  .news {
+    padding: 3rem 1rem;
+  }
+  
+  .newsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .newsCard {
+    padding: 1.5rem;
+  }
+  
+  .readMore {
+    padding: 0.75rem 1.5rem; /* 手機版閱讀更多按鈕更大 */
+    min-height: 48px;
+    font-size: 1rem;
+  }
+  
+  .navigation {
+    padding: 3rem 1rem;
+  }
+  
+  .navGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem; /* 增加間距 */
+  }
+  
+  .navCard {
+    padding: 2.5rem 2rem; /* 手機版導航卡片更大 */
+    min-height: 140px;
+  }
+  
+  .footerLinks {
     flex-direction: column;
+    gap: 1rem;
   }
-
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
-  }
-
-  a.secondary {
-    min-width: auto;
-  }
-
-  .footer {
-    flex-wrap: wrap;
+  
+  .footerLinks a {
+    padding: 0.75rem; /* 手機版頁尾連結增加觸控區域 */
+    min-height: 44px;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+@media (max-width: 480px) {
+  .container {
+    padding-top: 60px;
+  }
+  
+  .hero {
+    padding: 3rem 1rem;
+  }
+  
+  .heroTitle {
+    font-size: 2rem;
+  }
+  
+  .heroSlogan {
+    font-size: 1.1rem;
+  }
+  
+  .ctaButton {
+    padding: 1.5rem 3rem; /* 小螢幕按鈕更大更醒目 */
+    min-height: 56px;
+    font-size: 1.1rem;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .carouselImage {
+    height: 250px;
+  }
+  
+  .readMore {
+    padding: 1rem 2rem; /* 小螢幕閱讀更多按鈕更大 */
+    min-height: 52px;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .navCard {
+    padding: 3rem 2rem; /* 小螢幕導航卡片更大 */
+    min-height: 160px;
+    text-align: center;
+  }
+}
+
+/* 高對比度和可訪問性 */
+@media (prefers-reduced-motion: reduce) {
+  .carouselTrack,
+  .newsCard,
+  .navCard,
+  .ctaButton {
+    transition: none;
+  }
+}
+
+/* 彈出視窗樣式 */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.modalContent {
+  background: #fff;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 4px;
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  font-weight: 300;
+  color: #666;
+  cursor: pointer;
+  width: 48px;  /* 增大觸控區域 */
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.closeButton:hover {
+  background: #f5f5f5;
+  color: #000;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 4rem 1rem 2rem; /* 右側預留更多空間給關閉按鈕 */
+  border-bottom: 1px solid #f1f3f4;
+}
+
+.modalCategory {
+  background: #000;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.modalDate {
+  color: #6c757d;
+  font-size: 1rem;
+}
+
+.modalTitle {
+  padding: 1rem 4rem 0 2rem; /* 右側預留更多空間給關閉按鈕 */
+  margin: 0 0 1rem 0;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #212529;
+}
+
+.modalBody {
+  padding: 0 2rem 2rem;
+  line-height: 1.8;
+  color: #495057;
+}
+
+.modalBody p {
+  margin: 0 0 1.5rem 0;
+  font-size: 1rem;
+}
+
+.additionalContent {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 4px;
+  margin-top: 2rem;
+  border-left: 4px solid #000;
+}
+
+.additionalContent h3 {
+  margin: 0 0 1rem 0;
+  color: #212529;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.additionalContent ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.additionalContent li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.reportInfo {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.reportInfo strong {
+  color: #212529;
+}
+
+/* 焦點狀態 */
+.ctaButton:focus,
+.readMore:focus,
+.navCard:focus,
+.footerLinks a:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+/* 彈出視窗響應式 */
+@media (max-width: 768px) {
+  .modalOverlay {
+    padding: 1rem;
+  }
+  
+  .modalContent {
+    max-height: 95vh;
+  }
+  
+  .modalHeader {
+    padding: 1.5rem 3rem 1rem 1rem; /* 手機版右側預留空間給關閉按鈕 */
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .modalTitle {
+    padding: 0.5rem 3rem 0 1rem; /* 手機版右側預留空間給關閉按鈕 */
+    font-size: 1.5rem;
+  }
+  
+  .modalBody {
+    padding: 0 1rem 1.5rem;
+  }
+  
+  .closeButton {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 52px; /* 手機版關閉按鈕更大 */
+    height: 52px;
+    font-size: 2.2rem;
   }
 }

@@ -1,304 +1,201 @@
 "use client";
 
-import Link from "next/link";
-import { Card, Typography, Space, Row, Col, Button, Tag } from 'antd';
-import { 
-  HomeOutlined,
-  InfoCircleOutlined,
-  BookOutlined,
-  TeamOutlined,
-  NotificationOutlined,
-  QuestionCircleOutlined,
-  EyeOutlined,
-  ExclamationCircleOutlined,
-  HeartOutlined
-} from '@ant-design/icons';
-
-const { Title, Paragraph, Text } = Typography;
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import styles from './page.module.css';
 
 export default function Home() {
+  const [announcements, setAnnouncements] = useState([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedNews, setSelectedNews] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // 獲取最新消息
+  useEffect(() => {
+    fetch('/api/announcements')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          setAnnouncements(data.data.slice(0, 2)); // 只取前兩條
+        }
+      })
+      .catch(err => console.error('Error fetching announcements:', err));
+  }, []);
+
+  // 自動輪播
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide(prev => (prev + 1) % 1); // 目前只有一張圖
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // 處理閱讀全文點擊
+  const handleReadMore = (announcement) => {
+    setSelectedNews(announcement);
+    setIsModalOpen(true);
+  };
+
+  // 關閉彈出視窗
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedNews(null);
+  };
+
   return (
-    <div style={{ 
-      background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)',
-      minHeight: '100vh',
-      padding: '0'
-    }}>
-      {/* Hero Section */}
-      <div style={{ 
-        background: 'linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%)',
-        padding: '4rem 2rem',
-        textAlign: 'center',
-        color: 'white',
-        position: 'relative'
-      }}>
-        <div style={{ 
-          maxWidth: '800px', 
-          margin: '0 auto',
-          position: 'relative',
-          zIndex: 2
-        }}>
-          <Title level={1} style={{ 
-            color: 'white', 
-            fontSize: '4rem', 
-            marginBottom: '1rem',
-            textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
-          }}>
-            🏛️ 白房子
-          </Title>
-          
-          <Title level={2} style={{ 
-            color: '#f0f0f0', 
-            fontWeight: 300,
-            marginBottom: '2rem'
-          }}>
-            《White House》DC 企劃
-          </Title>
-
-          <div style={{ marginBottom: '2rem' }}>
-            <Tag color="red" style={{ fontSize: '14px', padding: '4px 12px' }}>陣營</Tag>
-            <Tag color="orange" style={{ fontSize: '14px', padding: '4px 12px' }}>懸疑</Tag>
-            <Tag color="purple" style={{ fontSize: '14px', padding: '4px 12px' }}>探索</Tag>
-            <Tag color="blue" style={{ fontSize: '14px', padding: '4px 12px' }}>劇情</Tag>
-          </div>
-
-          <Paragraph style={{ 
-            color: 'rgba(255,255,255,0.9)', 
-            fontSize: '18px', 
-            lineHeight: '1.8',
-            maxWidth: '600px',
-            margin: '0 auto 3rem auto'
-          }}>
-            自稱為「選民學院」，實際為真理教殘黨暗中運營的洗腦培育中心。
-            <br />
-            <Text italic style={{ color: 'rgba(255,255,255,0.7)' }}>
-              「白色是淨化的起點，孩子是再造的種子。」
-            </Text>
-          </Paragraph>
-
-          <Button 
-            type="primary" 
-            size="large" 
-            icon={<EyeOutlined />}
-            style={{ 
-              background: 'linear-gradient(135deg, #ff4d4f 0%, #ff7875 100%)',
-              border: 'none',
-              height: '50px',
-              fontSize: '16px',
-              borderRadius: '25px',
-              padding: '0 30px'
-            }}
-          >
-            <Link href="/intro" style={{ color: 'white', textDecoration: 'none' }}>
-              進入白房子
-            </Link>
-          </Button>
+    <div className={styles.container}>
+      {/* Hero Section - 標題/口號區塊 */}
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <h1 className={styles.heroTitle}>白屋醫教育成兒童中心</h1>
+          <p className={styles.heroSlogan}>「陽光可將一切疾病退去。」</p>
+          <Link href="/about" className={styles.ctaButton}>
+            了解更多
+          </Link>
         </div>
+      </section>
 
-        {/* Overlay Pattern */}
-        <div style={{ 
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          opacity: 0.1,
-          background: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="7" cy="7" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-          zIndex: 1
-        }} />
-      </div>
-
-      {/* Main Content */}
-      <div style={{ 
-        padding: '4rem 2rem',
-        maxWidth: '1200px',
-        margin: '0 auto'
-      }}>
-        <Space direction="vertical" size="large" style={{ width: '100%' }}>
-          
-          {/* Navigation Cards */}
-          <Row gutter={[24, 24]}>
-            <Col xs={24} sm={12} md={8}>
-              <Link href="/intro" style={{ textDecoration: 'none' }}>
-                <Card hoverable style={{ 
-                  background: 'linear-gradient(135deg, #1890ff 0%, #36cfc9 100%)',
-                  border: 'none',
-                  height: '180px'
-                }}>
-                  <div style={{ textAlign: 'center', color: 'white' }}>
-                    <InfoCircleOutlined style={{ fontSize: '3rem', marginBottom: '1rem' }} />
-                    <Title level={3} style={{ color: 'white', margin: '0 0 0.5rem 0' }}>企劃介紹</Title>
-                    <Paragraph style={{ color: 'rgba(255,255,255,0.9)', margin: 0 }}>
-                      了解白房子的世界觀與背景
-                    </Paragraph>
-                  </div>
-                </Card>
-              </Link>
-            </Col>
-            
-            <Col xs={24} sm={12} md={8}>
-              <Link href="/rules" style={{ textDecoration: 'none' }}>
-                <Card hoverable style={{ 
-                  background: 'linear-gradient(135deg, #722ed1 0%, #eb2f96 100%)',
-                  border: 'none',
-                  height: '180px'
-                }}>
-                  <div style={{ textAlign: 'center', color: 'white' }}>
-                    <BookOutlined style={{ fontSize: '3rem', marginBottom: '1rem' }} />
-                    <Title level={3} style={{ color: 'white', margin: '0 0 0.5rem 0' }}>核心規則</Title>
-                    <Paragraph style={{ color: 'rgba(255,255,255,0.9)', margin: 0 }}>
-                      COC 擲骰系統與洗腦機制
-                    </Paragraph>
-                  </div>
-                </Card>
-              </Link>
-            </Col>
-            
-            <Col xs={24} sm={12} md={8}>
-              <Link href="/players" style={{ textDecoration: 'none' }}>
-                <Card hoverable style={{ 
-                  background: 'linear-gradient(135deg, #52c41a 0%, #73d13d 100%)',
-                  border: 'none',
-                  height: '180px'
-                }}>
-                  <div style={{ textAlign: 'center', color: 'white' }}>
-                    <TeamOutlined style={{ fontSize: '3rem', marginBottom: '1rem' }} />
-                    <Title level={3} style={{ color: 'white', margin: '0 0 0.5rem 0' }}>遊戲名單</Title>
-                    <Paragraph style={{ color: 'rgba(255,255,255,0.9)', margin: 0 }}>
-                      玩家排名與詳細資料查詢
-                    </Paragraph>
-                  </div>
-                </Card>
-              </Link>
-            </Col>
-            
-            <Col xs={24} sm={12} md={8}>
-              <Link href="/bulletin" style={{ textDecoration: 'none' }}>
-                <Card hoverable style={{ 
-                  background: 'linear-gradient(135deg, #faad14 0%, #ffc53d 100%)',
-                  border: 'none',
-                  height: '180px'
-                }}>
-                  <div style={{ textAlign: 'center', color: 'white' }}>
-                    <NotificationOutlined style={{ fontSize: '3rem', marginBottom: '1rem' }} />
-                    <Title level={3} style={{ color: 'white', margin: '0 0 0.5rem 0' }}>告示板</Title>
-                    <Paragraph style={{ color: 'rgba(255,255,255,0.9)', margin: 0 }}>
-                      最新任務與重要公告
-                    </Paragraph>
-                  </div>
-                </Card>
-              </Link>
-            </Col>
-            
-            <Col xs={24} sm={12} md={8}>
-              <Link href="/qa" style={{ textDecoration: 'none' }}>
-                <Card hoverable style={{ 
-                  background: 'linear-gradient(135deg, #13c2c2 0%, #36cfc9 100%)',
-                  border: 'none',
-                  height: '180px'
-                }}>
-                  <div style={{ textAlign: 'center', color: 'white' }}>
-                    <QuestionCircleOutlined style={{ fontSize: '3rem', marginBottom: '1rem' }} />
-                    <Title level={3} style={{ color: 'white', margin: '0 0 0.5rem 0' }}>常見問題</Title>
-                    <Paragraph style={{ color: 'rgba(255,255,255,0.9)', margin: 0 }}>
-                      遊戲相關疑問解答
-                    </Paragraph>
-                  </div>
-                </Card>
-              </Link>
-            </Col>
-
-            <Col xs={24} sm={12} md={8}>
-              <Link href="/login" style={{ textDecoration: 'none' }}>
-                <Card hoverable style={{ 
-                  background: 'linear-gradient(135deg, #000000 0%, #434343 100%)',
-                  border: '2px solid #fff',
-                  height: '180px'
-                }}>
-                  <div style={{ textAlign: 'center', color: 'white' }}>
-                    <EyeOutlined style={{ fontSize: '3rem', marginBottom: '1rem' }} />
-                    <Title level={3} style={{ color: 'white', margin: '0 0 0.5rem 0' }}>玩家登入</Title>
-                    <Paragraph style={{ color: 'rgba(255,255,255,0.9)', margin: 0 }}>
-                      進入個人儀表板系統
-                    </Paragraph>
-                  </div>
-                </Card>
-              </Link>
-            </Col>
-          </Row>
-
-          {/* Warning Section */}
-          <Card style={{ 
-            background: 'linear-gradient(135deg, #ff4d4f 0%, #ff7875 100%)',
-            border: '2px solid #ff4d4f',
-            color: 'white'
-          }}>
-            <div style={{ textAlign: 'center' }}>
-              <ExclamationCircleOutlined style={{ fontSize: '3rem', color: 'white', marginBottom: '1rem' }} />
-              <Title level={2} style={{ color: 'white' }}>⚠️ 重要提醒</Title>
-              <Paragraph style={{ color: 'rgba(255,255,255,0.9)', fontSize: '16px' }}>
-                本企劃包含心理驚悚、邪教洗腦、重口味等成人內容。
-                <br />
-                適合年滿 18 歲且心理承受能力良好的玩家參與。
-              </Paragraph>
-              <div style={{ marginTop: '1rem' }}>
-                <Tag color="black" style={{ fontSize: '12px' }}>18+ 限定</Tag>
-                <Tag color="red" style={{ fontSize: '12px' }}>心理驚悚</Tag>
-                <Tag color="orange" style={{ fontSize: '12px' }}>重口味</Tag>
-                <Tag color="purple" style={{ fontSize: '12px' }}>邪教題材</Tag>
+      {/* 形象輪播區塊 */}
+      <section className={styles.carousel}>
+        <div className={styles.carouselContainer}>
+          <div 
+            className={styles.carouselTrack}
+            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+          >
+            <div className={styles.slide}>
+              <Image
+                src="/promotional-image.jpg" 
+                alt="白屋療癒環境"
+                width={1200}
+                height={600}
+                className={styles.carouselImage}
+                priority
+              />
+              <div className={styles.slideOverlay}>
+                <h3>純淨療癒環境</h3>
+                <p>為每一位孩子提供最安全的成長空間</p>
               </div>
             </div>
-          </Card>
+          </div>
+        </div>
+      </section>
 
-          {/* Stats Section */}
-          <Card>
-            <Title level={2} style={{ textAlign: 'center', marginBottom: '2rem' }}>
-              <HeartOutlined style={{ color: '#ff4d4f', marginRight: '0.5rem' }} />
-              企劃統計
-            </Title>
-            <Row gutter={[24, 24]} style={{ textAlign: 'center' }}>
-              <Col xs={12} md={6}>
-                <div>
-                  <Title level={1} style={{ color: '#1890ff', margin: 0 }}>45</Title>
-                  <Text type="secondary">總玩家數</Text>
+      {/* 最新消息區塊 */}
+      <section className={styles.news}>
+        <div className={styles.newsContainer}>
+          <h2 className={styles.sectionTitle}>最新消息</h2>
+          <div className={styles.newsGrid}>
+            {announcements.map((announcement, index) => (
+              <article key={announcement.id} className={styles.newsCard}>
+                <div className={styles.newsHeader}>
+                  <span className={styles.newsCategory}>{announcement.author}</span>
+                  <time className={styles.newsDate}>{announcement.created_date}</time>
                 </div>
-              </Col>
-              <Col xs={12} md={6}>
-                <div>
-                  <Title level={1} style={{ color: '#52c41a', margin: 0 }}>10</Title>
-                  <Text type="secondary">調查員</Text>
-                </div>
-              </Col>
-              <Col xs={12} md={6}>
-                <div>
-                  <Title level={1} style={{ color: '#ff4d4f', margin: 0 }}>10</Title>
-                  <Text type="secondary">神職人員</Text>
-                </div>
-              </Col>
-              <Col xs={12} md={6}>
-                <div>
-                  <Title level={1} style={{ color: '#faad14', margin: 0 }}>25</Title>
-                  <Text type="secondary">孩子們</Text>
-                </div>
-              </Col>
-            </Row>
-          </Card>
+                <h3 className={styles.newsTitle}>{announcement.title}</h3>
+                <p className={styles.newsExcerpt}>
+                  {announcement.content.substring(0, 120)}...
+                </p>
+                <button 
+                  onClick={() => handleReadMore(announcement)}
+                  className={styles.readMore}
+                >
+                  閱讀全文 →
+                </button>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        </Space>
-      </div>
+      {/* 導覽區塊 */}
+      <section className={styles.navigation}>
+        <div className={styles.navContainer}>
+          <h2 className={styles.sectionTitle}>服務項目</h2>
+          <div className={styles.navGrid}>
+            <Link href="/about" className={styles.navCard}>
+              <h3>關於我們</h3>
+              <p>了解白屋的歷史與使命</p>
+            </Link>
+            <Link href="/treatment" className={styles.navCard}>
+              <h3>治療介紹</h3>
+              <p>專業的療癒方案</p>
+            </Link>
+            <Link href="/facilities" className={styles.navCard}>
+              <h3>環境介紹</h3>
+              <p>安全舒適的療癒空間</p>
+            </Link>
+            <Link href="/join" className={styles.navCard}>
+              <h3>加入我們</h3>
+              <p>成為白屋大家庭的一員</p>
+            </Link>
+          </div>
+        </div>
+      </section>
 
-      {/* Footer */}
-      <div style={{ 
-        background: '#000',
-        color: 'rgba(255,255,255,0.6)',
-        padding: '2rem',
-        textAlign: 'center'
-      }}>
-        <Paragraph style={{ color: 'rgba(255,255,255,0.6)', margin: 0 }}>
-          Built with Next.js + Ant Design + Google Sheets API
-          <br />
-          《白房子》DC 企劃 © 2025
-        </Paragraph>
-      </div>
+      {/* 頁尾 */}
+      <footer className={styles.footer}>
+        <div className={styles.footerContent}>
+          <div className={styles.disclaimer}>
+            <p>本網站為虛構企劃《白房子》之官方網站，所有內容均為創作，請勿與現實人物、團體、事件產生連結。</p>
+          </div>
+          <div className={styles.footerLinks}>
+            <Link href="/qa">常見問題</Link>
+            <Link href="/contact">聯絡我們</Link>
+            <Link href="/privacy">隱私政策</Link>
+          </div>
+          <div className={styles.copyright}>
+            <p>© 2024 《白房子》企劃版權所有</p>
+          </div>
+        </div>
+      </footer>
+
+      {/* 彈出視窗 */}
+      {isModalOpen && selectedNews && (
+        <div className={styles.modalOverlay} onClick={closeModal}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.closeButton} onClick={closeModal}>×</button>
+            <div className={styles.modalHeader}>
+              <div className={styles.modalCategory}>{selectedNews.author}</div>
+              <time className={styles.modalDate}>{selectedNews.created_date}</time>
+            </div>
+            <h2 className={styles.modalTitle}>{selectedNews.title}</h2>
+            <div className={styles.modalBody}>
+              <p>{selectedNews.content}</p>
+              {selectedNews.id === 'A002' && (
+                <div className={styles.additionalContent}>
+                  <h3>社區安全守則</h3>
+                  <ul>
+                    <li>如發現任何可疑人士在機構周邊徘徊，請立即通報安全部門</li>
+                    <li>嚴禁與外界人員討論機構內部事務</li>
+                    <li>所有訪客必須經過嚴格身份驗證才能進入</li>
+                    <li>定期檢查孩子們是否有異常行為或言論</li>
+                    <li>維護白屋純淨環境是每個人的責任</li>
+                  </ul>
+                  <p className={styles.reportInfo}>
+                    <strong>舉報專線：</strong> 24小時守護熱線 0800-WHITE-HOUSE
+                    <br />
+                    <strong>緊急聯絡：</strong> security@whitehouse-care.org
+                  </p>
+                </div>
+              )}
+              {selectedNews.id === 'A001' && (
+                <div className={styles.additionalContent}>
+                  <h3>畢業學員去向</h3>
+                  <p>本次畢業的15位學員將前往以下地點繼續他們的「深造」：</p>
+                  <ul>
+                    <li>XX集團海外研發中心 - 5名學員</li>
+                    <li>國際醫療援助組織 - 4名學員</li>
+                    <li>跨國教育機構 - 3名學員</li>
+                    <li>慈善基金會分部 - 3名學員</li>
+                  </ul>
+                  <p>這些優秀的孩子們將在各自的崗位上發光發熱，為世界帶來正面影響。我們相信，白屋的教育理念將透過他們傳播到世界各地。</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

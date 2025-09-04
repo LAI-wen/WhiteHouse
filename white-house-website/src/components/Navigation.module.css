@@ -1,0 +1,441 @@
+/* Desktop Navigation */
+.desktopNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  /* 初始的、較淺的陰影 */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  /* 【修改】移除 all，只 transition 需要的屬性 (如果有的話) */
+  /* transition: all 0.3s ease; */
+  position: relative; /* 為了偽元素定位 */
+}
+
+
+/* 我們用一個偽元素來放最終的、較深的陰影 */
+.desktopNav::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+  border-radius: inherit; /* 如果你的 nav 有圓角 */
+  opacity: 0; /* 預設隱藏 */
+  transition: opacity 0.3s ease;
+  z-index: -1; /* 放在底層 */
+  pointer-events: none; /* 避免擋住點擊 */
+}
+
+/* 當 sticky class 加上時，讓偽元素的陰影淡入 */
+.desktopNav.sticky::after {
+  opacity: 1;
+}
+.navContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 70px;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.logo:hover {
+  color: #333;
+}
+
+.tabContainer {
+  display: flex;
+  position: relative;
+  background: #f8f8f8;
+  border-radius: 35px;
+  padding: 5px;
+  margin: 0 2rem;
+  flex: 1;
+  max-width: 600px;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.tab:hover {
+  color: #000;
+}
+
+.tab.active {
+  color: #fff;
+}
+
+.tabSlider {
+  position: absolute;
+  top: 5px;
+  height: calc(100% - 10px);
+  background: #000;
+  border-radius: 30px;
+  /* 【修改】從 left 改為 transform 和 width */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  /* 【移除】left 屬性，因為現在由 inline style 的 transform 控制 */
+}
+
+.authButtons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loginBtn {
+  padding: 8px 20px;
+  border: 2px solid #000;
+  color: #000;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.loginBtn:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* Mobile Navigation - 完全按照參考設計 */
+.mobileNav {
+  display: none;
+  position: relative; /* 改為 relative，只有 header 是 fixed */
+  z-index: 1000;
+}
+
+.mobileHeader {
+  background: #fff;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  position: fixed; /* header 本身是 fixed */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mobileLogo {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+}
+
+.menuTrigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 42px;
+  height: 42px;
+  position: relative;
+  z-index: 1002;
+}
+
+.menuBar {
+  display: block;
+  height: 4px;
+  background: #000;
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+  transform-origin: center;
+}
+
+.menuBar:nth-child(1) {
+  width: 50%;
+}
+
+.menuBar:nth-child(2) {
+  width: 100%;
+}
+
+.menuBar:nth-child(3) {
+  width: 50%;
+  margin-left: 50%;
+}
+
+.menuTrigger:hover .menuBar::before {
+  width: 100%;
+}
+
+.menuBar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 0%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+/* Close trigger bars */
+.menuTrigger.active .menuBar {
+  background: #fff;
+}
+
+.menuTrigger.active .menuBar:nth-child(1) {
+  width: 100%;
+  transform: rotate(45deg) translateY(10px);
+}
+
+.menuTrigger.active .menuBar:nth-child(2) {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.menuTrigger.active .menuBar:nth-child(3) {
+  width: 100%;
+  margin-left: 0;
+  transform: rotate(-45deg) translateY(-10px);
+}
+
+/* Mobile menu container - 只在開啟時覆蓋螢幕 */
+.mobileMenu {
+  position: fixed;
+  top: 70px; /* 在 header 下方 */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #222;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /* 關閉時不阻擋點擊 */
+  transition: all 0.4s cubic-bezier(0.55, 0, 0.1, 1);
+  overflow: hidden;
+}
+
+.mobileMenu.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto; /* 開啟時恢復點擊功能 */
+}
+
+.mobileMenu.open .menuBg.top {
+  transform: rotate(-45deg) translateY(0);
+}
+
+.mobileMenu.open .menuBg.middle {
+  transform: rotate(-45deg) scaleY(1);
+}
+
+.mobileMenu.open .menuBg.bottom {
+  transform: rotate(-45deg) translateY(0);
+}
+
+/* 黑白長條交叉背景動畫 - 完全按照參考設計優化 */
+.menuBg {
+  position: absolute;
+  display: block;
+  width: 200%;
+  height: 40%;
+  background: #fff;
+  transform: rotate(-45deg);
+  transition: transform 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.menuBg.top {
+  top: -25%;
+  left: -53%;
+  transform: rotate(-45deg) translateY(-200%);
+  transition-delay: 0s;
+}
+
+.menuBg.middle {
+  top: 30%;
+  left: -53%;
+  transform: rotate(-45deg) scaleY(0);
+  transition-delay: 0.15s;
+}
+
+.menuBg.bottom {
+  top: 85%;
+  left: -53%;
+  transform: rotate(-45deg) translateY(200%);
+  transition-delay: 0.3s;
+}
+
+.menuOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.menuContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 20%;
+  width: 100%;
+}
+
+.mobileMenuItem {
+  color: #222;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 15px 0;
+  position: relative;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.mobileMenuItem::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 4px;
+  background: #222;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.mobileMenuItem:hover::before,
+.mobileMenuItem.active::before {
+  opacity: 1;
+  width: 18px;
+  transform: translateX(0);
+}
+
+.mobileAuth {
+  margin-top: 2rem;
+}
+
+.mobileLoginBtn {
+  color: #222;
+  background: transparent;
+  border: none;
+  padding: 15px 0;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: block;
+  position: relative;
+}
+
+.mobileLoginBtn::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 4px;
+  background: #222;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.mobileLoginBtn:hover::before {
+  opacity: 1;
+  width: 18px;
+  transform: translateX(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .desktopNav {
+    display: none;
+    
+  }
+  
+  .mobileNav {
+    display: block;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);
+  }
+}
+
+@media (min-width: 769px) {
+  .mobileNav {
+    display: none;
+  }
+  
+  .desktopNav {
+    display: block;
+  }
+}
+
+/* Smooth animations */
+.tab,
+.tabSlider,
+.menuBar,
+.mobileMenu {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus states for accessibility - 移除黑框線 */
+.tab:focus,
+.loginBtn:focus,
+.menuTrigger:focus,
+.mobileMenuItem:focus,
+.mobileLoginBtn:focus {
+  outline: none;
+}
+
+/* 使用更友善的 focus 樣式 */
+.tab:focus {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.menuTrigger:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.mobileMenuItem:focus {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.mobileLoginBtn:focus {
+  background: rgba(0, 0, 0, 0.05);
+}
