@@ -32,7 +32,7 @@ export default function Home() {
   }, []);
 
   // 處理閱讀全文點擊
-  const handleReadMore = (announcement) => {
+  const handleReadMore = (announcement: any) => {
     setSelectedNews(announcement);
     setIsModalOpen(true);
   };
