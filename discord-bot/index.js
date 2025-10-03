@@ -591,6 +591,70 @@ client.on('interactionCreate', async (interaction) => {
   }
 });
 
+// =================================================================
+// 監聽訊息，檢查違禁詞
+// =================================================================
+client.on('messageCreate', async (message) => {
+  // 1. 忽略機器人自身的訊息或私訊，避免無限循環
+  if (message.author.bot || !message.guild) {
+    return;
+  }
+
+  // 2. 從 .env 讀取設定
+  const targetRoleId = process.env.TARGET_ROLE_ID;
+  const forbiddenWords = (process.env.FORBIDDEN_WORDS || '').split(',').filter(w => w.trim() !== '');
+  const notificationChannelId = process.env.NOTIFICATION_CHANNEL_ID;
+  const reactionEmoji = process.env.REACTION_EMOJI || '❗';
+
+  // 檢查設定是否齊全
+  if (!targetRoleId || forbiddenWords.length === 0 || !notificationChannelId) {
+    return;
+  }
+
+  // 3. 檢查發送者是否擁有目標身分組
+  if (!message.member.roles.cache.has(targetRoleId)) {
+    return; // 如果沒有該身分組，就直接忽略
+  }
+
+  // 4. 檢查訊息內容是否包含任何一個違禁詞
+  const messageContent = message.content.toLowerCase();
+  const foundWord = forbiddenWords.find(word => messageContent.includes(word.toLowerCase()));
+
+  if (foundWord) {
+    // 5. 如果找到違禁詞，執行動作
+    try {
+      // 動作 1: 為訊息貼上表符
+      await message.react(reactionEmoji);
+      console.log(`✅ 已為 ${message.author.tag} 的訊息貼上表符。`);
+
+      // 動作 2: 將訊息連結回傳主辦頻道
+      const notificationChannel = await client.channels.fetch(notificationChannelId);
+      
+      if (notificationChannel) {
+        const notifyEmbed = {
+          color: 0xFF0000, // 紅色
+          title: '🚨 偵測到違禁詞',
+          description: `**${message.member.displayName}** 在 <#${message.channel.id}> 中提到了違禁詞。`,
+          fields: [
+            { name: '觸發者', value: `<@${message.author.id}>`, inline: true },
+            { name: '觸發詞', value: `\`${foundWord}\``, inline: true },
+            { name: '原始訊息', value: `[點擊跳轉至訊息](${message.url})`, inline: false },
+            { name: '訊息內容', value: `>>> ${message.content}` }
+          ],
+          timestamp: new Date(),
+          footer: { text: 'White House Bot - 訊息監控' }
+        };
+        
+        await notificationChannel.send({ embeds: [notifyEmbed] });
+        console.log(`📡 已發送通知至主辦頻道。`);
+      }
+
+    } catch (error) {
+      console.error('處理違禁詞訊息時發生錯誤:', error);
+    }
+  }
+});
+
 // 錯誤處理
 client.on('error', error => {
   console.error('Discord客戶端錯誤:', error);
